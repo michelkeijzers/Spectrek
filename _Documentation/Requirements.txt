@@ -1,0 +1,63 @@
+REQUIREMENTS
+SPECTREK
+
+
+TIM Time
+TIM0000 16 Everything costs time: moving, shooting photons, docking etc.
+
+FED Federation
+FED0000 16 The federations has five base ships.
+FED1000 16 The positions are in random but different quadrants.
+FED1010 40 Federation bases do not move.
+FED2000 16 When the enterprise is at the same location as a base ship, the energy is filled to 100% and photons are renewed.
+
+PRO Propulsion
+PRO0000 16 The enterprise can move by two ways: impulse and warp drive.
+PRO1000 16 When using impulse drive, a direction and distance is given and that amount of sectors will be moved.
+PRO2000 16 When using warp drive, a direction and distance is given and that amount of quadrants will be moved.
+
+SEN Sensors
+SEN0000 16 The enterprise has two types of sensors: long distance sensors and short distance sensors.
+SEN1000 16 The long distance sensors can count the amount of klingons in the current and 8 nearby quadrants.
+
+WEA Weapons
+WEA0000 17 The enterprise has various weapons like photons.
+WEA1000 17 The enterprise can attack its own base ships.
+WEA2000 17 Photons are fired by giving a direction
+WEA2010 17 Photons have a default speed.
+WEA2020 17 There is a limited storage of photons in the enterprise.
+WEA5000 17 Klingon ships are small and the enterprise can take multiple hits
+
+SHI Shield
+SHI0000 The enterprise has a shield.
+SHI1000 The shield cost (lots of) energy.
+SHI1010 The shield can be switched on and off.
+SHI2000 The shield has a damage percentage which reduced after a hit.
+SHI2010 When shield is down or at 100% damage, the enterprise gets damaged when hit.
+
+KLI Klingons
+KLI0000 16 Klingons are the 'enemy' of the federation.
+KLI2000 Klingons attack immediately when the enterprise enters the quadrant a klingon is present.
+KLI3000 16 Klingons will try to destroy federation bases.
+KLI4000 16 Klingons have photons as weapons.
+KLI4010 16 Klingon ships will be destroyed by one federation photon
+KLI5000 16 Klingon ships move (change with book: also sector positions are updated).
+
+END End of game
+END1000 17 The game ends when time is up.
+END0010 17 The game ends when energy is 0.
+END0020 17 The game ends when the enterprise left the milky way.
+END0030 17 The game ends when the damage of the enterprise is 100%.
+END0040 17 The game ends when the enterprise hits a Klingon.
+END0050 17 The game ends when the quit command has been issued.
+END0060 17 The game ends when the last klingon has been destroyed.
+
+TUI Text User Interface
+TUI0000 19 The user interface will be textual only.
+TUI1000 19 There are 6 commands: Impulse, Hyperdrive, Sensors, Weapons (Photons), Shield and Quit (Stop).
+TUI1100 19 The Impulse (I) command moves the enterprise using the Impulse propulsion.
+TUI1200 19 The Hyperdrive (H) command moves the enterprise using the Hyperdrive propulsion.
+TUI1300 19 The Sensors (S) command shows the sensors page.
+TUI1400 19 The Weapons (W) command shows the weapons page.
+TUI1500 19 The Shield (H) command shows the shield page.
+TUI1600 19 The Quit (Q) (Stop) command quits the game.

@@ -1,0 +1,42 @@
+@startuml
+
+/*
+class TransportGame
+{
+   Date Date
+}
+
+class Company
+{
+   string Name
+   int Cash
+}
+
+class Trucks
+{
+}
+
+class Truck
+{
+   string Id
+}
+
+class Contracts
+
+class Contract
+{
+   int Months
+   int Income
+}
+
+TransportGame "1" *-- "1" Company
+TransportGame "1" *-- "1" Contracts
+
+Company "1" *-- "1" Trucks
+Trucks "1" *-- "*" Truck
+Truck "1" *-> "0,1" Contract : Serviceding
+Contract "1" *-> "0,1" Truck : ServicedBy
+Contracts "1" *-- "*" Contract
+*/
+
+@enduml
