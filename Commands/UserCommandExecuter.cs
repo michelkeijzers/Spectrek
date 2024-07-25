@@ -33,7 +33,7 @@ namespace AsciiGames
 
 		public void Execute(Command.EId command)
 		{
-			SpecTrek specTrek = SpecTrek.Instance;
+			SpecTrek specTrek = SpecTrek.Instance!;
 
 			switch (command)
 			{
@@ -47,7 +47,7 @@ namespace AsciiGames
 							int power = InputInteger("Power", 0, 10);
 							if (power != INVALID_NUMBER)
 							{
-								SpecTrek.Instance.Federation.Enterprise.Propulsions?.SetImpulseDrive(direction, power);
+								SpecTrek.Instance.Federation.Enterprise.Propulsions!.SetImpulseDrive(direction, power);
 							}
 						}
 					}
@@ -61,18 +61,18 @@ namespace AsciiGames
 							int warp = InputInteger("Warp Speed", 0, 10);
 							if (warp != INVALID_NUMBER)
 							{
-								SpecTrek.Instance.Federation.Enterprise.Propulsions?.SetHyperDrive(direction, warp);
+								SpecTrek.Instance.Federation.Enterprise.Propulsions!.SetHyperDrive(direction, warp);
 							}
 						}
 					}
 					break;
 
 				case Command.EId.Move:
-					specTrek?.Federation.Enterprise.Propulsions?.Move();
+					specTrek.Federation.Enterprise.Propulsions!.Move();
 					break;
 
 				case Command.EId.LongDistanceSensorSweep: 
-					specTrek.Federation.Enterprise.Sensors?.LongDistanceSensor.Sweep(); 
+					specTrek.Federation.Enterprise.Sensors.LongDistanceSensor.Sweep(); 
 					break;
 
 				case Command.EId.ElapseTime: 

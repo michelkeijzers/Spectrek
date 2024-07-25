@@ -37,7 +37,7 @@ namespace AsciiGames
 
 		private int CountBaseShipsInQuadrant(Quadrant quadrant)
 		{
-			return BaseShips.Count(ship => ship != null && ship.Sector?.Quadrant == quadrant);
+			return BaseShips.Count(ship => ship != null && ship.Sector!.Quadrant == quadrant);
 		}
 
 		public List<BaseShip> BaseShips { get; private set; } = [];

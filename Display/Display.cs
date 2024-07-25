@@ -19,13 +19,13 @@ namespace AsciiGames
 		private void PrintStatistics()
 		{
 			Enterprise enterprise = SpecTrek.Federation.Enterprise;
-			Propulsions? propulsions = enterprise.Propulsions;
+			Propulsions propulsions = enterprise.Propulsions!;
 			Console.Write($"Enterprise | Damage: {enterprise.DamagePercentage,3}%");
 			CultureInfo englishCulture = new("en-US");
 			Console.Write(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
 			 enterprise.YPosition.ToString("N2", englishCulture) + ")");
-			Console.Write($", Drive: {propulsions?.CurrentPropulsionAsText}");
-			Console.WriteLine($", Direction: {propulsions?.Direction}º, Speed: {propulsions?.Speed}");
+			Console.Write($", Drive: {propulsions.CurrentPropulsionAsText}");
+			Console.WriteLine($", Direction: {propulsions.Direction}º, Speed: {propulsions.Speed}");
 			Sector? sector = enterprise.Sector;
 			if (sector != null)
 			{
@@ -39,24 +39,24 @@ namespace AsciiGames
 			Console.Write("     ");
 			for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
 			{
-				Console.Write($"{horizontal + 1:D2}   ");
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"{horizontal + 1:D2}   ");
 			}
 			Console.WriteLine();
 
 			for (int vertical = 0; vertical < Quadrant.VERTICAL_SECTORS; vertical++)
 			{
-				Console.Write($"  {vertical + 1}  ");
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"  {vertical + 1}  ");
 				for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
 				{
-					Console.Write($"{GetSectorContent(horizontal, vertical)}");
+					PrintSectorContent(horizontal, vertical);
 				}
 				Console.WriteLine();
 			}
 		}
 
-		private string GetSectorContent(int horizontal, int vertical)
+		private void PrintSectorContent(int horizontal, int vertical)
 		{
-			string content = "";
+			int nrOfCharactersPrinted = 0;
 			Enterprise enterprise = SpecTrek.Federation.Enterprise;
 			Quadrant? quadrant = enterprise.Sector?.Quadrant;
 			Sector? sector = quadrant?.GetSector(horizontal, vertical);
@@ -64,19 +64,22 @@ namespace AsciiGames
 			{
 				if (enterprise.Sector == sector)
 				{
-					content += "E";
+					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "E");
+					nrOfCharactersPrinted++;
 				}
 				if (SpecTrek.Federation.BaseShips.HasSectorBaseShip(sector))
 				{
-					content += "B";
+					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "B");
+					nrOfCharactersPrinted++;
 				}
 				if (SpecTrek.KlingonShips.HasSectorShip(sector))
 				{
-					content += "K";
+					ConsolePlus.WriteWithColor(System.ConsoleColor.Red, "K");
+					nrOfCharactersPrinted++;
 				}
 			}
 
-			return content.PadRight(5);
+			Console.Write(new string(' ', 5 - nrOfCharactersPrinted));
 		}
 
 		public SpecTrek SpecTrek { get; private set; } = specTrek;

@@ -41,7 +41,7 @@ namespace AsciiGames
 
 		public int DamagePercentage { get; private set; } = 0;
 
-		public Sensors? Sensors { get; private set; }
+		public Sensors Sensors { get; private set; }
 
 		public Propulsions? Propulsions { get; private set; }
 	}

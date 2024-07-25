@@ -5,27 +5,22 @@
 		public override void Sweep()
 		{
 			Console.WriteLine("Long Distance Sensor");
-			Quadrant? enterpriseQuadrant = SpecTrek.Instance.Federation?.Enterprise.Sector?.Quadrant;
+			Quadrant? enterpriseQuadrant = SpecTrek.Instance.Federation.Enterprise.Sector?.Quadrant;
 			if (enterpriseQuadrant != null)
 			{
 				Console.Write("     ");
 				for (int horizontal = Math.Max(0, enterpriseQuadrant.Horizontal - 1);
 						horizontal <= Math.Min(MilkyWay.HORIZONTAL_QUADRANTS - 1, enterpriseQuadrant.Horizontal + 1); horizontal++)
 				{
-					Console.Write($"  {horizontal:D1}  ");
+					Console.Write($"  {horizontal + 1:D1}  ");
 				}
 				Console.WriteLine();
 
 				for (int vertical = enterpriseQuadrant.Vertical - 1; vertical <= enterpriseQuadrant.Vertical + 1; vertical++)
 				{ 
-				//for (int vertical = Math.Max(0, enterpriseQuadrant.Vertical - 1);
-				//			vertical <= Math.Min(MilkyWay.VERTICAL_QUADRANTS - 1, enterpriseQuadrant.Vertical + 1); vertical++)
-					Console.Write($"  {vertical:D1}  ");
+					Console.Write($"  {vertical + 1:D1}  ");
 					for (int horizontal = enterpriseQuadrant.Horizontal - 1; horizontal <= enterpriseQuadrant.Horizontal + 1; horizontal++)
 					{
-						//for (int horizontal = Math.Max(0, enterpriseQuadrant.Horizontal - 1);
-						//		horizontal <= Math.Min(MilkyWay.HORIZONTAL_QUADRANTS - 1, enterpriseQuadrant.Horizontal + 1); horizontal++)
-						//{
 						if ((horizontal < 0) || (horizontal >= MilkyWay.HORIZONTAL_QUADRANTS) ||
 							 (vertical < 0) || (vertical >= MilkyWay.VERTICAL_QUADRANTS))
 						{

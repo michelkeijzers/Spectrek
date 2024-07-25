@@ -50,12 +50,12 @@ namespace AsciiGames
 
 		public int CountKlingons()
 		{
-			return SpecTrek.Instance.KlingonShips.Ships.Count(ship => ship.Sector?.Quadrant == this);
+			return SpecTrek.Instance.KlingonShips.Ships.Count(ship => ship.Sector!.Quadrant == this);
 		}
 
 		public bool HasBaseShip()
 		{
-			return SpecTrek.Instance.Federation.BaseShips.BaseShips.Exists(ship => ship.Sector?.Quadrant == this);
+			return SpecTrek.Instance.Federation.BaseShips.BaseShips.Exists(ship => ship.Sector!.Quadrant == this);
 		}
 
 		public static bool IsOutOfQuadrant(int horizontal, int vertical)

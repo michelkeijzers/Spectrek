@@ -49,12 +49,13 @@ namespace AsciiGames
 			bool endGame = false;
 			if (_userCommandExecuter.IsQuitCommandIssued)
 			{
-				Console.WriteLine("Game has ended because you quit. Thanks for playing.");
+				ConsolePlus.WriteLineWithColor(System.ConsoleColor.Yellow, "Game has ended because you quit. Thanks for playing.");
 				endGame = true;
 			}
 			else if (!Federation.Enterprise.IsWithinMilkyWay)
 			{
-				Console.WriteLine("Game has ended because the enterprise is lost in space.");
+				ConsolePlus.WriteLineWithColor(System.ConsoleColor.Yellow, "Game has ended because the enterprise is lost in space.");
+
 				endGame = true;
 			}
 			return endGame;
