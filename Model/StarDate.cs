@@ -11,25 +11,12 @@ namespace AsciiGames
 		public void Init()
 		{
 			Year = 24;
-			Day = 0;
+			Day = 1;
 		}
 
 		public void ElapseTime()
 		{
 			Day++;
-		}
-
-		public void Print()
-		{
-			Console.WriteLine($"Star Date: {Date}");
-		}
-
-		private string Date
-		{
-			get
-			{
-				return $"{Year:2}{Day:2}";
-			}
 		}
 
 		public int Year { get; private set; } // Fixed 24(00)

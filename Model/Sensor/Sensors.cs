@@ -6,6 +6,6 @@ namespace AsciiGames
 	{
 		public LongDistanceSensor LongDistanceSensor { get; private set; } = new LongDistanceSensor();
 
-		public ShortDistanceSensor ShortDistanceSensor { get; private set; } = new ShortDistanceSensor();
+		//public ShortDistanceSensor ShortDistanceSensor { get; private set; } = new ShortDistanceSensor();
 	}
 }

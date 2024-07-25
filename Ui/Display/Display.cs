@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace AsciiGames
 {
-	public class Display(SpecTrek specTrek)
+	public class Display()
 	{
 	
 		public void Print()
@@ -18,14 +18,22 @@ namespace AsciiGames
 
 		private void PrintStatistics()
 		{
-			Enterprise enterprise = SpecTrek.Federation.Enterprise;
+			SpecTrek specTrek = SpecTrek.Instance;
+			Enterprise enterprise = specTrek.Federation.Enterprise;
 			Propulsions propulsions = enterprise.Propulsions!;
-			Console.Write($"Enterprise | Damage: {enterprise.DamagePercentage,3}%");
+
+			Console.WriteLine($"Star Date: {specTrek.StarDate.Year:D2}{specTrek.StarDate.Day:D4}");
+
 			CultureInfo englishCulture = new("en-US");
+			Console.Write("Enterprise | Energy: ");
+			Console.Write(enterprise.Energy.ToString("N0", englishCulture));
+			Console.Write($", Damage: {enterprise.DamagePercentage}%");
 			Console.Write(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
 			 enterprise.YPosition.ToString("N2", englishCulture) + ")");
-			Console.Write($", Drive: {propulsions.CurrentPropulsionAsText}");
-			Console.WriteLine($", Direction: {propulsions.Direction}º, Speed: {propulsions.Speed}");
+
+			Propulsion currentPropulsion = propulsions!.CurrentPropulsion;
+			Console.Write($", {currentPropulsion.Name}");
+			Console.WriteLine($" (Direction: {currentPropulsion.Direction}º, Speed: {currentPropulsion.Speed})");
 			Sector? sector = enterprise.Sector;
 			if (sector != null)
 			{
@@ -57,7 +65,8 @@ namespace AsciiGames
 		private void PrintSectorContent(int horizontal, int vertical)
 		{
 			int nrOfCharactersPrinted = 0;
-			Enterprise enterprise = SpecTrek.Federation.Enterprise;
+			SpecTrek specTrek = SpecTrek.Instance;
+			Enterprise enterprise = specTrek.Federation.Enterprise;
 			Quadrant? quadrant = enterprise.Sector?.Quadrant;
 			Sector? sector = quadrant?.GetSector(horizontal, vertical);
 			if (sector != null)
@@ -67,12 +76,12 @@ namespace AsciiGames
 					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "E");
 					nrOfCharactersPrinted++;
 				}
-				if (SpecTrek.Federation.BaseShips.HasSectorBaseShip(sector))
+				if (specTrek.Federation.BaseShips.HasSectorBaseShip(sector))
 				{
 					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "B");
 					nrOfCharactersPrinted++;
 				}
-				if (SpecTrek.KlingonShips.HasSectorShip(sector))
+				if (specTrek.KlingonShips.HasSectorShip(sector))
 				{
 					ConsolePlus.WriteWithColor(System.ConsoleColor.Red, "K");
 					nrOfCharactersPrinted++;
@@ -81,7 +90,5 @@ namespace AsciiGames
 
 			Console.Write(new string(' ', 5 - nrOfCharactersPrinted));
 		}
-
-		public SpecTrek SpecTrek { get; private set; } = specTrek;
 	}
 }

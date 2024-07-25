@@ -2,8 +2,7 @@
 
 namespace AsciiGames
 {
-	public abstract class Propulsion
+	public abstract class Sensor()
 	{
-		
 	}
 }

@@ -10,6 +10,7 @@ namespace AsciiGames
 			Propulsions = new Propulsions();
 			XPosition = 0.0;
 			YPosition = 0.0;
+			Energy = 15000;
 		}
 
 		public void Init()
@@ -44,5 +45,8 @@ namespace AsciiGames
 		public Sensors Sensors { get; private set; }
 
 		public Propulsions? Propulsions { get; private set; }
+
+		public int Energy { get; private set;  }
+
 	}
 }

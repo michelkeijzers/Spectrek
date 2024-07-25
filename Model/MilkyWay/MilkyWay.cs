@@ -25,18 +25,6 @@ namespace AsciiGames
 			}
 		}
 
-		public void Print()
-		{
-			for (int vertical = 0; vertical < VERTICAL_QUADRANTS; vertical++)
-			{
-				for (int horizontal = 0; horizontal < HORIZONTAL_QUADRANTS; horizontal++)
-				{
-					Console.Write($"{_quadrants[horizontal, vertical].Name}".PadRight(15));
-				}
-				Console.WriteLine();
-			}
-		}
-
 		public Quadrant GetRandomQuadrant()
 		{
 			return _quadrants[_random.Next(HORIZONTAL_QUADRANTS - 1), _random.Next(VERTICAL_QUADRANTS - 1)];

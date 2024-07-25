@@ -1,7 +1,12 @@
 ﻿namespace AsciiGames
 {
-	public class KlingonShip
+	public class Ship
 	{
+		public Ship()
+		{
+
+		}
+
 		public Sector? Sector { get; set; }
 	}
 }
