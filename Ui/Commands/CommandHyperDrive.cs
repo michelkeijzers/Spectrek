@@ -8,7 +8,7 @@ namespace AsciiGames
 
 		public override string KeyString {  get { return "H"; } }
 
-		public override string Text {  get { return "Warp Drive"; } }
+		public override string Text {  get { return "Hyper Drive"; } }
 
 		public override bool CanExecute()
 		{

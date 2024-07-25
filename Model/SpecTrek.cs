@@ -47,10 +47,10 @@ namespace AsciiGames
 			return status;
 		}
 
-
 		public MilkyWay MilkyWay { get; private set; }
 
 		public Federation Federation { get; private set; }
+
 		public KlingonShipCollection KlingonShips { get; private set; }
 
 		public StarDate StarDate { get; private set; }	

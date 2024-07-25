@@ -44,7 +44,7 @@ namespace AsciiGames
 			{
 				Console.Write(enterprise.Energy.ToString("N0", englishCulture));
 			}
-			Console.Write($", Damage: {enterprise.DamagePercentage}%");
+			Console.Write(", Damage: " + enterprise.DamagePercentage.ToString("N1", englishCulture) + "%");
 			Console.Write(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
 			 enterprise.YPosition.ToString("N2", englishCulture) + ")");
 
@@ -93,7 +93,7 @@ namespace AsciiGames
 					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "E");
 					nrOfCharactersPrinted++;
 				}
-				if (specTrek.Federation.BaseShips.HasSectorBaseShip(sector))
+				if (specTrek.Federation.BaseShips.HasSectorIntactBaseShip(sector))
 				{
 					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "B");
 					nrOfCharactersPrinted++;

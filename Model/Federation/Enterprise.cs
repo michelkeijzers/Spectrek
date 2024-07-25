@@ -38,9 +38,16 @@ namespace AsciiGames
 			}
 		}
 
+		public void DockWithBaseShip()
+		{
+			SpecTrek.Instance.StarDate.Day += (int)(DamagePercentage + 0.5);
+			Energy = 15000;
+			DamagePercentage = 0.0;
+		}
+
 		public bool IsWithinMilkyWay { get; set; } = true;
 
-		public int DamagePercentage { get; private set; } = 0;
+		public double DamagePercentage { get; set; } = 0.0;
 
 		public Sensors Sensors { get; private set; }
 
@@ -48,5 +55,12 @@ namespace AsciiGames
 
 		public int Energy { get; set;  }
 
+		public bool IsHealthy
+		{
+			get
+			{
+				return ((DamagePercentage <= 10.0) && (Energy >= 10000)); // TODO: photons > 10, see page 60
+			}
+		}
 	}
 }

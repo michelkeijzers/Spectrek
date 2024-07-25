@@ -9,7 +9,7 @@ namespace AsciiGames
 			CommandList =
 			[
 				// Main menu
-				//new(Command.EId.LongDistanceSensorSweep, ConsoleKey.L, "L", "Long Distance Sensor Sweep"),
+				new CommandLongDistanceSensor(),
 				new CommandImpulseDrive(),
 				new CommandHyperDrive(),
 				new CommandMove(),

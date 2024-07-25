@@ -4,7 +4,7 @@ namespace AsciiGames
 {
 	public class BaseShipCollection()
 	{
-		private readonly int NR_OF_BASE_SHIPS = 5;
+		private readonly int NR_OF_BASE_SHIPS = 10; // TODO: 5; 
 
 		public void Init()
 		{
@@ -19,9 +19,9 @@ namespace AsciiGames
 			}
 		}
 
-		public bool HasSectorBaseShip(Sector sector)
+		public bool HasSectorIntactBaseShip(Sector sector)
 		{
-			return BaseShips.Any(baseShip => baseShip.Sector == sector);
+			return BaseShips.Any(baseShip => !baseShip.IsDestroyed && baseShip.Sector == sector);
 		}
 
 		private Sector GetRandomSectorWithoutBaseShip()

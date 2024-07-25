@@ -25,6 +25,17 @@ namespace AsciiGames
 			}
 		}
 
+		public static bool IsHorizontalQuadrantIndex(int horizontal)
+		{
+			return ((0 <= horizontal) && (horizontal < HORIZONTAL_QUADRANTS));
+		}
+
+		public static bool IsVerticalQuadrantIndex(int vertical)
+		{
+			return ((0 <= vertical) && (vertical < VERTICAL_QUADRANTS));
+		}
+
+
 		public Quadrant GetRandomQuadrant()
 		{
 			return _quadrants[_random.Next(HORIZONTAL_QUADRANTS - 1), _random.Next(VERTICAL_QUADRANTS - 1)];
@@ -49,8 +60,8 @@ namespace AsciiGames
 
 		public Sector? FindSectorWithPosition(double xPosition, double yPosition)
 		{
-			if ((xPosition < 0.0) || (xPosition > MilkyWay.HORIZONTAL_QUADRANTS * Quadrant.HORIZONTAL_SECTORS) ||
-				 (yPosition < 0.0) || (yPosition > MilkyWay.VERTICAL_QUADRANTS * Quadrant.VERTICAL_SECTORS))
+			if ((xPosition < 0.0) || (xPosition >= MilkyWay.HORIZONTAL_QUADRANTS * Quadrant.HORIZONTAL_SECTORS) ||
+				 (yPosition < 0.0) || (yPosition >= MilkyWay.VERTICAL_QUADRANTS * Quadrant.VERTICAL_SECTORS))
 			{
 				return null;
 			}

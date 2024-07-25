@@ -4,7 +4,7 @@ namespace AsciiGames
 {
 	public class KlingonShipCollection()
 	{
-		private readonly int NR_OF_KLINGON_SHIPS = 6;
+		private readonly int NR_OF_KLINGON_SHIPS = 10; //TODO: 6;
 
 		public void Init()
 		{

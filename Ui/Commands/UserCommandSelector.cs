@@ -13,17 +13,20 @@ namespace AsciiGames
 		private Command SelectCommand()
 		{
 			PrintCommands();
-			Console.Write("Select command: ");
 			Command? command;
 			do
 			{
+				Console.Write("Select command: ");
 				ConsoleKeyInfo input = Console.ReadKey();
 				Console.WriteLine("");
 
 				command = _commands.CommandList.FirstOrDefault(com => (com.Key == input.Key) && com.CanExecute());
-				if (command == null)
+				if (command == null) 
 				{
-					Console.WriteLine("Invalid command");
+					if (input.Key != ConsoleKey.Enter)
+					{
+						Console.WriteLine("Invalid command");
+					}
 					PrintCommands();
 				}
 			} while (command == null);
