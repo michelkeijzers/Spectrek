@@ -1,8 +1,21 @@
-﻿namespace AsciiGames
-{ 
-	public class LongDistanceSensorCommand
+﻿using AsciiGames;
+
+namespace AsciiGames
+{
+	public class CommandLongDistanceSensor : Command
 	{
-		public static void Execute()
+		public override ConsoleKey Key { get { return ConsoleKey.L; } }
+
+		public override string KeyString {  get { return "L"; } }
+
+		public override string Text {  get { return "Long Distance Sensor"; } }
+
+		public override bool CanExecute()
+		{
+			return true;
+		}
+
+		public override void Execute()
 		{
 			Console.WriteLine("Long Distance Sensor");
 			Quadrant? enterpriseQuadrant = SpecTrek.Instance.Federation.Enterprise.Sector?.Quadrant;

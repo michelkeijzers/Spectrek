@@ -2,15 +2,13 @@ using System.ComponentModel.Design;
 
 namespace AsciiGames
 {
-	public class UserCommandSelector()
+	public class UserCommandSelector(Commands commands)
 	{
-		public Command.EId Select()
+		public Command Select()
 		{
-			Command command;
-			command = SelectCommand();
-			return command.Id;
+			Command command = SelectCommand();
+			return command;
 		}
-
 
 		private Command SelectCommand()
 		{
@@ -22,7 +20,7 @@ namespace AsciiGames
 				ConsoleKeyInfo input = Console.ReadKey();
 				Console.WriteLine("");
 
-				command = _commands.GetByKeyInMenu(input.Key);
+				command = _commands.CommandList.FirstOrDefault(com => (com.Key == input.Key) && com.CanExecute());
 				if (command == null)
 				{
 					Console.WriteLine("Invalid command");
@@ -32,20 +30,22 @@ namespace AsciiGames
 			return command;
 		}
 
-		
 
 		public void PrintCommands()
 		{
 			Console.Write("Commands: ");
 			foreach (Command command in _commands.CommandList)
 			{
-				Console.Write($"{command.KeyString}: {command.Text}    ");
+				if (command.CanExecute())
+				{
+					Console.Write($"{command.KeyString}: {command.Text}    ");
+				}
 			}
 			Console.WriteLine();
 		}
 
-		public Command.EId SelectedCommand { get; set; } = Command.EId.None;
+		private readonly Commands _commands = commands;
 
-		private readonly Commands _commands = new();
+		public static bool IsQuitCommandIssued { get; set; }
 	}
 }

@@ -4,8 +4,8 @@
 	{
 		public Ui()
 		{
-			_userCommandSelector = new();
-			_userCommandExecuter = new();
+			Commands commands = new();
+			_userCommandSelector = new(commands);
 		}
 
 		public void Play()
@@ -21,16 +21,16 @@
 			while (!CheckEndOfGame())
 			{
 				Display.Print();
-				Command.EId command = _userCommandSelector.Select();
-				_userCommandExecuter.Execute(command);
+				Command command = _userCommandSelector.Select();
+				command.Execute();
 			}
 			EndGame();
 		}
 
-		private bool CheckEndOfGame()
+		private static bool CheckEndOfGame()
 		{
 			bool endGame;
-			if (_userCommandExecuter.IsQuitCommandIssued)
+			if (UserCommandSelector.IsQuitCommandIssued)
 			{
 				ConsolePlus.WriteLineWithColor(System.ConsoleColor.Yellow, "Game has ended because you quit. Thanks for playing.");
 				endGame = true;
@@ -87,6 +87,5 @@
 		}
 
 		private readonly UserCommandSelector _userCommandSelector;
-		private readonly UserCommandExecuter _userCommandExecuter;
 	}
 }

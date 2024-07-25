@@ -1,24 +1,57 @@
 ﻿namespace AsciiGames
 {
-	public class Command(
-		Command.EId id, ConsoleKey key, string keyString, string text)
+	public abstract class Command
 	{
-		public enum EId
+		protected static readonly int INVALID_NUMBER = -999;
+
+		//Command.EId id, ConsoleKey key, string keyString, string text)
+		//{
+		/*
+			public enum EId
+			{
+				LongDistanceSensorSweep,
+				ImpulseDrive,
+				HyperDrive,
+				Move,
+				Dock,
+				QuitGame
+			};
+		*/
+
+		public abstract ConsoleKey Key { get; }
+
+		public abstract string KeyString { get; }
+
+		public abstract string Text { get; }
+
+		public abstract bool CanExecute();
+
+		public abstract void Execute();
+		
+		protected static int InputInteger(string text, int min, int max)
 		{
-			None,
-			ImpulseDrive,
-			HyperDrive,
-			Move,
-			LongDistanceSensorSweep,
-			QuitGame
-		};
+			bool changed = false;
+			int outputValue = INVALID_NUMBER;
+			Console.Write($"Enter {text} ({min}..{max}): ");
+			string? input = Console.ReadLine();
+			if (input is not null)
+			{
+				if (int.TryParse(input, out int value))
+				{
+					if ((value >= min) && (value <= max))
+					{
+						outputValue = value;
+						changed = true;
+					}
+				}
+			}
 
-		public EId Id { get; set; } = id;
+			if (!changed)
+			{
+				Console.WriteLine("Invalid input/range.");
+			}
+			return outputValue;
+		}
 
-		public ConsoleKey Key { get; set; } = key;
-
-		public string KeyString { get; set; } = keyString;
-
-		public string Text { get; set; } = text;
 	}
 }
