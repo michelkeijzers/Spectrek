@@ -21,11 +21,6 @@ namespace AsciiGames
 		}
 
 
-		public void ElapseTime()
-		{
-			StarDate.ElapseTime();
-		}
-
 		public enum EEndOfGameStatus
 		{
 			None,

@@ -7,21 +7,14 @@ namespace AsciiGames
 		public Command.EId Select()
 		{
 			Command command;
-			do
-			{
-				command = SelectCommand();
-				if (command.ToMenu != Command.EMenu.None)
-				{
-					_menu = command.ToMenu;
-				}
-			} while (command.ToMenu != Command.EMenu.None);
+			command = SelectCommand();
 			return command.Id;
 		}
 
 
 		private Command SelectCommand()
 		{
-			PrintCommands(_menu);
+			PrintCommands();
 			Console.Write("Select command: ");
 			Command? command;
 			do
@@ -29,58 +22,27 @@ namespace AsciiGames
 				ConsoleKeyInfo input = Console.ReadKey();
 				Console.WriteLine("");
 
-				command = _commands.GetByKeyInMenu(input.Key, _menu);
+				command = _commands.GetByKeyInMenu(input.Key);
 				if (command == null)
 				{
 					Console.WriteLine("Invalid command");
-					PrintCommands(_menu);
+					PrintCommands();
 				}
 			} while (command == null);
-			// command = ProcessDetailCommand(command);
 			return command;
 		}
 
-		/*
-		//private Command ProcessDetailCommand(Command command)
-		{ 
-			if (command.Id == Command.EId.GoToTruckDetails)
-			{
-				_menu = command.ToMenu;
-				if (_specTrek.SpecTrek == null)
-				{
-					command = _commands.GetById(Command.EId.SelectTruck);
-				}
-			}
-	
-			return command;
-		}
-		*/
+		
 
-		public void PrintCommands(Command.EMenu menu)
+		public void PrintCommands()
 		{
-			Console.WriteLine($"===============   {Command.GetMenuName(menu)}   ===============");
-			//ProcessDetailText(menu);
+			Console.Write("Commands: ");
 			foreach (Command command in _commands.CommandList)
 			{
-				if (command.Menu == menu)
-				{
-					Console.Write($"{command.KeyString}: {command.Text}    ");
-				}
+				Console.Write($"{command.KeyString}: {command.Text}    ");
 			}
 			Console.WriteLine();
 		}
-
-		/*
-		private void ProcessDetailText(Command.EMenu menu)
-		{
-			if (menu == Command.EMenu.TruckDetails)
-			{
-				Console.WriteLine($"Selected Truck ID: {(_transportGame.SelectedTruck == null ? "-" : _transportGame.SelectedTruck.Id)}");
-			}
-		}
-		*/
-
-		private Command.EMenu _menu = Command.EMenu.Main;
 
 		public Command.EId SelectedCommand { get; set; } = Command.EId.None;
 

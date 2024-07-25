@@ -14,13 +14,8 @@ namespace AsciiGames
 			Day = 1;
 		}
 
-		public void ElapseTime()
-		{
-			Day++;
-		}
-
 		public int Year { get; private set; } // Fixed 24(00)
 		
-		public int Day { get; private set; } // 100 days in one year
+		public int Day { get; set; } // 10000 days in one year
 	}
 }

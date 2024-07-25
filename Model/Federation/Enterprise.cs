@@ -46,7 +46,7 @@ namespace AsciiGames
 
 		public Propulsions? Propulsions { get; private set; }
 
-		public int Energy { get; private set;  }
+		public int Energy { get; set;  }
 
 	}
 }

@@ -9,19 +9,18 @@ namespace AsciiGames
 			CommandList =
 			[
 				// Main menu
-				new(Command.EId.ImpulseDrive, Command.EMenu.Main, ConsoleKey.I, "I", "Impulse Drive", Command.EMenu.None),
-				new(Command.EId.HyperDrive, Command.EMenu.Main, ConsoleKey.H, "H", "Impulse Drive", Command.EMenu.None),
-				new(Command.EId.LongDistanceSensorSweep, Command.EMenu.Main, ConsoleKey.L, "L", "Long Distance Sensor Sweep", Command.EMenu.None),
-				new(Command.EId.Move, Command.EMenu.Main, ConsoleKey.M, "M", "Move", Command.EMenu.None),
-				new(Command.EId.StayInMainMenu, Command.EMenu.Main, ConsoleKey.Enter, "Enter", "Main Menu", Command.EMenu.Main),
+				new(Command.EId.ImpulseDrive, ConsoleKey.I, "I", "Impulse Drive"),
+				new(Command.EId.HyperDrive, ConsoleKey.H, "H", "Impulse Drive"),
+				new(Command.EId.LongDistanceSensorSweep, ConsoleKey.L, "L", "Long Distance Sensor Sweep"),
+				new(Command.EId.Move, ConsoleKey.M, "M", "Move"),
 
-				new(Command.EId.QuitGame, Command.EMenu.Main, ConsoleKey.Q, "Q", "Quit Game"),
+				new(Command.EId.QuitGame, ConsoleKey.Q, "Q", "Quit Game"),
 			];
 		}
 
-		public Command? GetByKeyInMenu(ConsoleKey key, EMenu menu)
+		public Command? GetByKeyInMenu(ConsoleKey key)
 		{
-			return CommandList.FirstOrDefault(c => c.Key == key && c.Menu == menu);
+			return CommandList.FirstOrDefault(c => c.Key == key);
       }
 
 		public Command GetById(EId id)

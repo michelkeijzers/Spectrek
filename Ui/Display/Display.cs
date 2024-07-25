@@ -10,13 +10,13 @@ namespace AsciiGames
 	public class Display()
 	{
 	
-		public void Print()
+		public static void Print()
 		{
 			PrintStatistics();
 			PrintGraphics();
 		}
 
-		private void PrintStatistics()
+		private static void PrintStatistics()
 		{
 			SpecTrek specTrek = SpecTrek.Instance;
 			Enterprise enterprise = specTrek.Federation.Enterprise;
@@ -42,7 +42,7 @@ namespace AsciiGames
 			}
 		}
 
-		private void PrintGraphics()
+		private static void PrintGraphics()
 		{
 			Console.Write("     ");
 			for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
@@ -62,7 +62,7 @@ namespace AsciiGames
 			}
 		}
 
-		private void PrintSectorContent(int horizontal, int vertical)
+		private static void PrintSectorContent(int horizontal, int vertical)
 		{
 			int nrOfCharactersPrinted = 0;
 			SpecTrek specTrek = SpecTrek.Instance;

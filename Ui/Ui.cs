@@ -6,8 +6,6 @@
 		{
 			_userCommandSelector = new();
 			_userCommandExecuter = new();
-
-			_display = new();
 		}
 
 		public void Play()
@@ -22,7 +20,7 @@
 
 			while (!CheckEndOfGame())
 			{
-				_display.Print();
+				Display.Print();
 				Command.EId command = _userCommandSelector.Select();
 				_userCommandExecuter.Execute(command);
 			}
@@ -58,7 +56,7 @@
 			return endGame;
 		}
 
-		private void PrintMilkyWay()
+		private static void PrintMilkyWay()
 		{
 			for (int vertical = 0; vertical < MilkyWay.VERTICAL_QUADRANTS; vertical++)
 			{
@@ -77,6 +75,5 @@
 
 		private readonly UserCommandSelector _userCommandSelector;
 		private readonly UserCommandExecuter _userCommandExecuter;
-		private readonly Display _display;
 	}
 }

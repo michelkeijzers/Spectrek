@@ -6,6 +6,8 @@
 		{
 			xPosition += XSegment * Quadrant.HORIZONTAL_SECTORS * Speed;
 			yPosition -= YSegment * Quadrant.VERTICAL_SECTORS * Speed;
+			SpecTrek.Instance.StarDate.Day += Speed;
+			SpecTrek.Instance.Federation.Enterprise.Energy -= Speed * 100;
 		}
 
 		public override string Name

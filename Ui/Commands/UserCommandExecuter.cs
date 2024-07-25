@@ -75,10 +75,6 @@ namespace AsciiGames
 					SweepLongDistanceSensor();
 					break;
 
-				case Command.EId.ElapseTime: 
-					specTrek.ElapseTime(); 
-					break;
-
 				case Command.EId.QuitGame: 
 					IsQuitCommandIssued = true; 
 					break;
@@ -91,7 +87,7 @@ namespace AsciiGames
 		}
 
 
-		private void SweepLongDistanceSensor()
+		private static void SweepLongDistanceSensor()
 		{
 			Console.WriteLine("Long Distance Sensor");
 			Quadrant? enterpriseQuadrant = SpecTrek.Instance.Federation.Enterprise.Sector?.Quadrant;
