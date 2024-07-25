@@ -24,7 +24,9 @@ namespace AsciiGames
 		public enum EEndOfGameStatus
 		{
 			None,
-			ExitedMilkyWay
+			ExitedMilkyWay,
+			EnergyDepleted,
+			NoTimeLeft
 		}
 
 		public EEndOfGameStatus CheckEndOfGame()
@@ -33,6 +35,14 @@ namespace AsciiGames
 			if (!Federation.Enterprise.IsWithinMilkyWay)
 			{
 				status = EEndOfGameStatus.ExitedMilkyWay;
+			}
+			else if (Federation.Enterprise.Energy < 0)
+			{
+				status = EEndOfGameStatus.EnergyDepleted;
+			}
+			else if (StarDate.Year >= 2405)
+			{
+				status = EEndOfGameStatus.NoTimeLeft;
 			}
 			return status;
 		}

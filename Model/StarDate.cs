@@ -10,12 +10,28 @@ namespace AsciiGames
 
 		public void Init()
 		{
-			Year = 24;
+			Year = 2400;
 			Day = 1;
 		}
 
 		public int Year { get; private set; } // Fixed 24(00)
-		
-		public int Day { get; set; } // 10000 days in one year
+
+		private int _day;
+		public int Day 
+		{
+			get
+			{
+				return _day;
+			}
+			set
+			{
+				_day = value;
+				while (_day >= 100)
+				{
+					_day -= 100;
+					Year++;
+				}
+			}
+		}
 	}
 }

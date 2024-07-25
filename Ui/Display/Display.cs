@@ -22,11 +22,28 @@ namespace AsciiGames
 			Enterprise enterprise = specTrek.Federation.Enterprise;
 			Propulsions propulsions = enterprise.Propulsions!;
 
-			Console.WriteLine($"Star Date: {specTrek.StarDate.Year:D2}{specTrek.StarDate.Day:D4}");
+			Console.Write("Star Date: ");
+			if (SpecTrek.Instance.StarDate.Year >= 2404)
+			{
+				ConsolePlus.WriteLineWithColor(System.ConsoleColor.Yellow, 
+					$"{specTrek.StarDate.Year:D4}.{specTrek.StarDate.Day:D2}");
+			}
+			else
+			{
+				Console.WriteLine($"{specTrek.StarDate.Year:D4}.{specTrek.StarDate.Day:D2}");
+			}
 
 			CultureInfo englishCulture = new("en-US");
 			Console.Write("Enterprise | Energy: ");
-			Console.Write(enterprise.Energy.ToString("N0", englishCulture));
+			int energy = enterprise.Energy;
+			if (energy < 1000)
+			{
+				ConsolePlus.WriteWithColor(System.ConsoleColor.Red, enterprise.Energy.ToString("N0", englishCulture));
+			}
+			else
+			{
+				Console.Write(enterprise.Energy.ToString("N0", englishCulture));
+			}
 			Console.Write($", Damage: {enterprise.DamagePercentage}%");
 			Console.Write(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
 			 enterprise.YPosition.ToString("N2", englishCulture) + ")");
