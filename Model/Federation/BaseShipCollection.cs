@@ -19,10 +19,16 @@ namespace AsciiGames
 			}
 		}
 
-		public bool HasSectorIntactBaseShip(Sector sector)
+		public bool HasIntactBaseShipInSector(Sector sector)
 		{
 			return BaseShips.Any(baseShip => !baseShip.IsDestroyed && baseShip.Sector == sector);
 		}
+
+		public BaseShip? GetBaseShipInQuadrant(Quadrant quadrant)
+		{
+			return BaseShips.FirstOrDefault(baseShip => baseShip.Sector!.Quadrant == quadrant);
+		}
+
 
 		private Sector GetRandomSectorWithoutBaseShip()
 		{
@@ -30,14 +36,9 @@ namespace AsciiGames
 			do
 			{
 				quadrant = SpecTrek.Instance.MilkyWay.GetRandomQuadrant();
-			} while (CountBaseShipsInQuadrant(quadrant) > 0);
+			} while (GetBaseShipInQuadrant(quadrant) != null);
 
 			return quadrant.GetRandomSector();
-		}
-
-		private int CountBaseShipsInQuadrant(Quadrant quadrant)
-		{
-			return BaseShips.Count(ship => ship != null && ship.Sector!.Quadrant == quadrant);
 		}
 
 		public List<BaseShip> BaseShips { get; private set; } = [];

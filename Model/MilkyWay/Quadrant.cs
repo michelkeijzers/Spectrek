@@ -64,6 +64,17 @@ namespace AsciiGames
 			        (vertical < 0) || (vertical >= VERTICAL_SECTORS));
 		}
 
+		public static void CalculateDirectionAndDistance(
+			Sector sectorFrom, Sector sectorTo, out double direction, out double distance)
+		{
+			double horizontalDistance = sectorTo.Horizontal - sectorFrom.Horizontal;
+			double verticalDistance = sectorTo.Vertical - sectorFrom.Vertical;
+			double directionRad = Math.Atan2(verticalDistance, horizontalDistance);
+			direction = (directionRad * 180.0 / Math.PI + 360.0) % 360.0;
+			direction = (direction + 90.0) % 360.0;
+			distance = Math.Sqrt(horizontalDistance * horizontalDistance + verticalDistance * verticalDistance);
+		}
+
 		private readonly Sector[,] _sectors = new Sector[HORIZONTAL_SECTORS, VERTICAL_SECTORS];
 
 		readonly private Random _random = new();

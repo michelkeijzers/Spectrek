@@ -10,24 +10,25 @@
 			EnterpriseTooHealthy
 		}
 		
-		public static EEvent Execute(BaseShip baseShip)
+		public static void Execute(BaseShip baseShip)
 		{
 			Enterprise enterprise = SpecTrek.Instance.Federation.Enterprise;
-			EEvent baseShipEvent = EEvent.DockingAllowed;
+			Event = EEvent.DockingAllowed;
 			if (baseShip.IsDestroyed)
 			{
 				enterprise.DamagePercentage = 100.0;
-				baseShipEvent = EEvent.EnterpriseHitDestroyedBaseShip;
+				Event = EEvent.EnterpriseHitDestroyedBaseShip;
 			}
 			else if (baseShip.Sector!.Quadrant.CountKlingons() > 0)
 			{
-				baseShipEvent = EEvent.CannotDockBecauseOfKlingonsAround;
+				Event = EEvent.CannotDockBecauseOfKlingonsAround;
 			}
 			else if (enterprise.IsHealthy)
 			{
-				baseShipEvent = EEvent.EnterpriseTooHealthy;
+				Event = EEvent.EnterpriseTooHealthy;
 			}
-			return baseShipEvent;
 		}
+
+		public static EEvent Event { get; private set; }
 	}
 }

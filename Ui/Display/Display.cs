@@ -56,6 +56,19 @@ namespace AsciiGames
 			{
 				Quadrant quadrant = sector.Quadrant;
 				Console.WriteLine($"Quadrant: ({quadrant.Horizontal + 1}, {quadrant.Vertical + 1}): {quadrant.Name}");
+
+				BaseShip? baseShip = SpecTrek.Instance.Federation.BaseShips.GetBaseShipInQuadrant(quadrant);
+				if (baseShip != null) 
+				{
+					if (BaseShipInSector.Event == BaseShipInSector.EEvent.DockingAllowed)
+					{
+						Quadrant.CalculateDirectionAndDistance(enterprise.Sector!, baseShip.Sector!,
+						 out double direction, out double distance);
+						ConsolePlus.WriteLineWithColor(ConsoleColor.Blue,
+						 $"The base ship is in direction " + direction.ToString("N2", englishCulture) + "º at distance " +
+						 distance.ToString("N2", englishCulture) + ".");
+					}
+				}
 			}
 		}
 
@@ -93,7 +106,7 @@ namespace AsciiGames
 					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "E");
 					nrOfCharactersPrinted++;
 				}
-				if (specTrek.Federation.BaseShips.HasSectorIntactBaseShip(sector))
+				if (specTrek.Federation.BaseShips.HasIntactBaseShipInSector(sector))
 				{
 					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "B");
 					nrOfCharactersPrinted++;
