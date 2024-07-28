@@ -14,27 +14,27 @@ namespace AsciiGames
 
 		public HyperDrive HyperDrive { get; private set; } = new HyperDrive();
 
-		public void SetImpulseDrive(int direction, int force)
+		public void SetImpulseDrive(int horizontal, int vertical)
 		{
 			CurrentPropulsion = ImpulseDrive;
-			CurrentPropulsion.Direction = direction;
-			CurrentPropulsion.Speed = force;
+			CurrentPropulsion.Horizontal = horizontal;
+			CurrentPropulsion.Vertical = vertical;
 		}
 
-		public void SetHyperDrive(int direction, int warp)
+		public void SetHyperDrive(int horizontal, int vertical)
 		{
 			CurrentPropulsion = HyperDrive;
-			CurrentPropulsion.Direction = direction;
-			CurrentPropulsion.Speed = warp;
+			CurrentPropulsion.Horizontal = horizontal;
+			CurrentPropulsion.Vertical = vertical;
 		}
 
 		public void Move()
 		{
 			Enterprise enterprise = SpecTrek.Instance.Federation.Enterprise;
-			double xPosition = enterprise.XPosition;
-			double yPosition = enterprise.YPosition;
+			int xPosition = enterprise.XPosition;
+			int yPosition = enterprise.YPosition;
 
-			CurrentPropulsion.Move(ref xPosition, ref yPosition);
+			CurrentPropulsion.Move(CurrentPropulsion.Horizontal, CurrentPropulsion.Vertical);
 			enterprise.SetPosition(xPosition, yPosition);
 		}
 

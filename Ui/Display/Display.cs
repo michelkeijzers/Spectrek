@@ -20,7 +20,6 @@ namespace AsciiGames
 		{
 			SpecTrek specTrek = SpecTrek.Instance;
 			Enterprise enterprise = specTrek.Federation.Enterprise;
-			Propulsions propulsions = enterprise.Propulsions!;
 
 			Console.Write("Star Date: ");
 			if (SpecTrek.Instance.StarDate.Year >= 2404)
@@ -45,30 +44,14 @@ namespace AsciiGames
 				Console.Write(enterprise.Energy.ToString("N0", englishCulture));
 			}
 			Console.Write(", Damage: " + enterprise.DamagePercentage.ToString("N1", englishCulture) + "%");
-			Console.Write(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
+			Console.WriteLine(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
 			 enterprise.YPosition.ToString("N2", englishCulture) + ")");
 
-			Propulsion currentPropulsion = propulsions!.CurrentPropulsion;
-			Console.Write($", {currentPropulsion.Name}");
-			Console.WriteLine($" (Direction: {currentPropulsion.Direction}º, Speed: {currentPropulsion.Speed})");
 			Sector? sector = enterprise.Sector;
 			if (sector != null)
 			{
 				Quadrant quadrant = sector.Quadrant;
 				Console.WriteLine($"Quadrant: ({quadrant.Horizontal + 1}, {quadrant.Vertical + 1}): {quadrant.Name}");
-
-				BaseShip? baseShip = SpecTrek.Instance.Federation.BaseShips.GetBaseShipInQuadrant(quadrant);
-				if (baseShip != null) 
-				{
-					if (BaseShipInSector.Event == BaseShipInSector.EEvent.DockingAllowed)
-					{
-						Quadrant.CalculateDirectionAndDistance(enterprise.Sector!, baseShip.Sector!,
-						 out double direction, out double distance);
-						ConsolePlus.WriteLineWithColor(ConsoleColor.Blue,
-						 $"The base ship is in direction " + direction.ToString("N2", englishCulture) + "º at distance " +
-						 distance.ToString("N2", englishCulture) + ".");
-					}
-				}
 			}
 		}
 

@@ -8,8 +8,8 @@ namespace AsciiGames
 		{
 			Sensors = new Sensors();
 			Propulsions = new Propulsions();
-			XPosition = 0.0;
-			YPosition = 0.0;
+			XPosition = 0;
+			YPosition = 0;
 			Energy = 15000;
 		}
 
@@ -25,13 +25,23 @@ namespace AsciiGames
 			get { return SpecTrek.Instance.MilkyWay.FindSectorWithPosition(XPosition, YPosition); }
 		}
 
-		public double XPosition { get; private set; }
-		public double YPosition { get; private set; }
+		public int XPosition { get; private set; }
+		public int YPosition { get; private set; }
 
-		public void SetPosition(double xPosition, double yPosition)
+		public void SetPosition(int xPosition, int yPosition)
 		{
 			XPosition = xPosition;
 			YPosition = yPosition;
+			if (SpecTrek.Instance.MilkyWay.FindSectorWithPosition(XPosition, YPosition) == null)
+			{
+				IsWithinMilkyWay = false;
+			}
+		}
+
+		public void DeltaPosition(int xPosition, int yPosition)
+		{
+			XPosition += xPosition;
+			YPosition += yPosition;
 			if (SpecTrek.Instance.MilkyWay.FindSectorWithPosition(XPosition, YPosition) == null)
 			{
 				IsWithinMilkyWay = false;

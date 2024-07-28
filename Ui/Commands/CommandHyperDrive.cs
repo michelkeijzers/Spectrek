@@ -2,7 +2,7 @@
 
 namespace AsciiGames
 {
-	public class CommandHyperDrive : Command
+	public class CommandHyperDrive : MoveCommand
 	{
 		public override ConsoleKey Key { get { return ConsoleKey.H; } }
 
@@ -17,13 +17,16 @@ namespace AsciiGames
 
 		public override void Execute()
 		{
-			int direction = InputInteger("Direction", 0, 359);
-			if (direction != INVALID_NUMBER)
+			int horizontal = InputInteger("Horizontal Quadrants", -MilkyWay.HORIZONTAL_QUADRANTS, MilkyWay.HORIZONTAL_QUADRANTS);
+			if (horizontal != INVALID_NUMBER)
 			{
-				int power = InputInteger("Warp Speed", 0, 10);
-				if (power != INVALID_NUMBER)
+				int vertical = InputInteger("Vertical Quadrants", -MilkyWay.VERTICAL_QUADRANTS, MilkyWay.VERTICAL_QUADRANTS);
+				if (vertical != INVALID_NUMBER)
 				{
-					SpecTrek.Instance.Federation.Enterprise.Propulsions!.SetHyperDrive(direction, power);
+					Enterprise enterprise = SpecTrek.Instance.Federation.Enterprise;
+					enterprise.Propulsions!.SetHyperDrive(horizontal, vertical);
+					enterprise.Propulsions!.CurrentPropulsion.Move(horizontal, vertical);
+					HandleBaseShipInEnterpriseSector();
 				}
 			}
 		}

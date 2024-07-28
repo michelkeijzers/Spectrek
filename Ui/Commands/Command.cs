@@ -4,20 +4,6 @@
 	{
 		protected static readonly int INVALID_NUMBER = -999;
 
-		//Command.EId id, ConsoleKey key, string keyString, string text)
-		//{
-		/*
-			public enum EId
-			{
-				LongDistanceSensorSweep,
-				ImpulseDrive,
-				HyperDrive,
-				Move,
-				Dock,
-				QuitGame
-			};
-		*/
-
 		public abstract ConsoleKey Key { get; }
 
 		public abstract string KeyString { get; }

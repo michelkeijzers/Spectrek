@@ -2,7 +2,7 @@
 
 namespace AsciiGames
 {
-	public class CommandImpulseDrive : Command
+	public class CommandImpulseDrive : MoveCommand
 	{
 		public override ConsoleKey Key { get { return ConsoleKey.I; } }
 
@@ -17,13 +17,16 @@ namespace AsciiGames
 
 		public override void Execute()
 		{
-			int direction = InputInteger("Direction", 0, 359);
-			if (direction != INVALID_NUMBER)
+			int horizontal = InputInteger("Horizontal", -Quadrant.HORIZONTAL_SECTORS, Quadrant.HORIZONTAL_SECTORS);
+			if (horizontal != INVALID_NUMBER)
 			{
-				int power = InputInteger("Power", 0, 10);
-				if (power != INVALID_NUMBER)
+				int vertical = InputInteger("Vertical", -Quadrant.VERTICAL_SECTORS, Quadrant.VERTICAL_SECTORS);
+				if (vertical != INVALID_NUMBER)
 				{
-					SpecTrek.Instance.Federation.Enterprise.Propulsions!.SetImpulseDrive(direction, power);
+					Enterprise enterprise = SpecTrek.Instance.Federation.Enterprise;
+					enterprise.Propulsions!.SetImpulseDrive(horizontal, vertical);
+					enterprise.Propulsions!.CurrentPropulsion.Move(horizontal, vertical);
+					HandleBaseShipInEnterpriseSector();
 				}
 			}
 		}

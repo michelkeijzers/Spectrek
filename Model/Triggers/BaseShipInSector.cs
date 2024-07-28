@@ -9,7 +9,21 @@
 			CannotDockBecauseOfKlingonsAround,
 			EnterpriseTooHealthy
 		}
-		
+
+		public static BaseShip? GetBaseShipInEnterpriseInSector
+		{
+			get
+			{
+				Enterprise enterprise = SpecTrek.Instance.Federation.Enterprise;
+				if (enterprise.IsWithinMilkyWay)
+				{
+					BaseShip? baseShip = SpecTrek.Instance.Federation.BaseShips.GetBaseShipInQuadrant(enterprise.Sector!.Quadrant);
+					return baseShip;
+				}
+				return null;
+			}
+		}
+
 		public static void Execute(BaseShip baseShip)
 		{
 			Enterprise enterprise = SpecTrek.Instance.Federation.Enterprise;

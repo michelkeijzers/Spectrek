@@ -2,12 +2,12 @@
 {
 	public class HyperDrive : Propulsion
 	{
-		public override void Move(ref double xPosition, ref double yPosition)
+		public override void Move(int horizontal, int vertical)
 		{
-			xPosition += XSegment * Quadrant.HORIZONTAL_SECTORS * Speed;
-			yPosition -= YSegment * Quadrant.VERTICAL_SECTORS * Speed;
-			SpecTrek.Instance.StarDate.Day += Speed;
-			SpecTrek.Instance.Federation.Enterprise.Energy -= Speed * 100;
+			SpecTrek.Instance.Federation.Enterprise.DeltaPosition(
+				 horizontal * Quadrant.HORIZONTAL_SECTORS, vertical * Quadrant.VERTICAL_SECTORS);
+			SpecTrek.Instance.StarDate.Day += Math.Abs(Horizontal) + Math.Abs(Vertical); // TODO
+			SpecTrek.Instance.Federation.Enterprise.Energy -= (Math.Abs(Horizontal) + Math.Abs(Vertical)) * 100;
 		}
 
 		public override string Name

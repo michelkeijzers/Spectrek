@@ -2,12 +2,11 @@
 {
 	public class ImpulseDrive : Propulsion
 	{
-		public override void Move(ref double xPosition, ref double yPosition)
+		public override void Move(int horizontal, int vertical)
 		{
-			xPosition += XSegment * Speed;
-			yPosition -= YSegment * Speed;
-			SpecTrek.Instance.StarDate.Day += Speed;
-			SpecTrek.Instance.Federation.Enterprise.Energy -= Speed;
+			SpecTrek.Instance.Federation.Enterprise.DeltaPosition(horizontal, vertical);
+			SpecTrek.Instance.StarDate.Day += Math.Abs(Horizontal) + Math.Abs(Vertical);
+			SpecTrek.Instance.Federation.Enterprise.Energy -= Math.Abs(Horizontal) + Math.Abs(Vertical); // TODO
 		}
 
 		public override string Name

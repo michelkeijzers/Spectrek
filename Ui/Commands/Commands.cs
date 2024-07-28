@@ -12,7 +12,6 @@ namespace AsciiGames
 				new CommandLongDistanceSensor(),
 				new CommandImpulseDrive(),
 				new CommandHyperDrive(),
-				new CommandMove(),
 				new CommandDock(),
 
 				new CommandQuitGame()

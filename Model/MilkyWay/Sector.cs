@@ -8,12 +8,12 @@ namespace AsciiGames
 
 		public Quadrant Quadrant { get; private set; } = quadrant;
 		
-		public double XPosition
+		public int XPosition
 		{
 			get { return Quadrant.Horizontal * Quadrant.HORIZONTAL_SECTORS + Horizontal; }
 		}
 
-		public double YPosition
+		public int YPosition
 		{
 			get { return Quadrant.Vertical * Quadrant.VERTICAL_SECTORS + Vertical; }
 		}

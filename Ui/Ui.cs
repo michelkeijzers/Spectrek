@@ -45,19 +45,19 @@
 						break;
 
 					case SpecTrek.EEndOfGameStatus.ExitedMilkyWay:
-						ConsolePlus.WriteLineWithColor(System.ConsoleColor.Yellow, 
+						ConsolePlus.WriteLineWithColor(System.ConsoleColor.Red, 
 							"Game has ended because the enterprise is lost in space.");
 						endGame = true;
 						break;
 					
 					case SpecTrek.EEndOfGameStatus.EnergyDepleted:
-						ConsolePlus.WriteLineWithColor(System.ConsoleColor.Yellow, 
+						ConsolePlus.WriteLineWithColor(System.ConsoleColor.Red, 
 							"The energy of the Enterprise has depleted, it is wandering in space forever.");
 						endGame = true;
 						break;
 
 					case SpecTrek.EEndOfGameStatus.NoTimeLeft:
-						ConsolePlus.WriteLineWithColor(System.ConsoleColor.Yellow,
+						ConsolePlus.WriteLineWithColor(System.ConsoleColor.Red,
 							"There is no time left for furter exploration.");
 						endGame = true;
 						break;
