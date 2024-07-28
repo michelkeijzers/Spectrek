@@ -57,22 +57,44 @@ namespace AsciiGames
 
 		private static void PrintGraphics()
 		{
-			Console.Write("     ");
+			Console.Write("   ");
 			for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
 			{
-				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"{horizontal + 1:D2}   ");
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $" {horizontal + 1:D2}  ");
+			}
+			Console.WriteLine();
+
+			Console.Write("   ");
+			for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
+			{
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"---- ");
 			}
 			Console.WriteLine();
 
 			for (int vertical = 0; vertical < Quadrant.VERTICAL_SECTORS; vertical++)
 			{
-				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"  {vertical + 1}  ");
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"{vertical + 1} |");
 				for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
 				{
 					PrintSectorContent(horizontal, vertical);
 				}
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"| {vertical + 1}");
 				Console.WriteLine();
 			}
+
+			Console.Write("   ");
+			for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
+			{
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"---- ");
+			}
+			Console.WriteLine();
+
+			Console.Write("   ");
+			for (int horizontal = 0; horizontal < Quadrant.HORIZONTAL_SECTORS; horizontal++)
+			{
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $" {horizontal + 1:D2}  ");
+			}
+			Console.WriteLine();
 		}
 
 		private static void PrintSectorContent(int horizontal, int vertical)
@@ -101,7 +123,7 @@ namespace AsciiGames
 				}
 			}
 
-			Console.Write(new string(' ', 5 - nrOfCharactersPrinted));
+			Console.Write(new string(' ', 5 - nrOfCharactersPrinted - ((horizontal == Quadrant.HORIZONTAL_SECTORS - 1) ? 1 : 0)));
 		}
 	}
 }

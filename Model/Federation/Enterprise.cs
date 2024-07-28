@@ -7,6 +7,7 @@ namespace AsciiGames
 		public Enterprise()
 		{
 			Sensors = new Sensors();
+			Weapons = new Weapons();
 			Propulsions = new Propulsions();
 			XPosition = 0;
 			YPosition = 0;
@@ -58,6 +59,8 @@ namespace AsciiGames
 		public bool IsWithinMilkyWay { get; set; } = true;
 
 		public Sensors Sensors { get; private set; }
+
+		public Weapons Weapons { get; private set; }	
 
 		public Propulsions? Propulsions { get; private set; }
 

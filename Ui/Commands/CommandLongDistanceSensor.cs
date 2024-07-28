@@ -28,12 +28,19 @@ namespace AsciiGames
 				{
 					if (MilkyWay.IsHorizontalQuadrantIndex(horizontal))
 					{
-						ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"  {horizontal + 1:D1}  ");
+						ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $" {horizontal + 1:D1}   ");
 					}
 					else
 					{
-						ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, "  -  ");
+						ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, " -   ");
 					}
+				}
+				Console.WriteLine();
+
+				ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, "     ");
+				for (int horizontal = enterpriseQuadrant.Horizontal - 1; horizontal <= enterpriseQuadrant.Horizontal + 1; horizontal++)
+				{
+					ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, "---- ");
 				}
 				Console.WriteLine();
 
@@ -41,7 +48,7 @@ namespace AsciiGames
 				{
 					if (MilkyWay.IsVerticalQuadrantIndex(vertical))
 					{
-						ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"  {vertical + 1:D1}  ");
+						ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGreen, $"  {vertical + 1:D1} |");
 						for (int horizontal = enterpriseQuadrant.Horizontal - 1; horizontal <= enterpriseQuadrant.Horizontal + 1; horizontal++)
 						{
 							if (MilkyWay.IsHorizontalQuadrantIndex(horizontal))
