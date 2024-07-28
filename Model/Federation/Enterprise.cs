@@ -2,7 +2,7 @@
 
 namespace AsciiGames
 {
-	public class Enterprise
+	public class Enterprise : Ship
 	{
 		public Enterprise()
 		{
@@ -20,7 +20,7 @@ namespace AsciiGames
 			YPosition = sector.YPosition;
 		}
 
-		public Sector? Sector 
+		public override Sector? Sector 
 		{
 			get { return SpecTrek.Instance.MilkyWay.FindSectorWithPosition(XPosition, YPosition); }
 		}
@@ -56,8 +56,6 @@ namespace AsciiGames
 		}
 
 		public bool IsWithinMilkyWay { get; set; } = true;
-
-		public double DamagePercentage { get; set; } = 0.0;
 
 		public Sensors Sensors { get; private set; }
 
