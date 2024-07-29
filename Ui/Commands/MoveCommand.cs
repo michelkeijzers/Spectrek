@@ -30,7 +30,6 @@
 							break;
 
 						case BaseShipInSector.EEvent.EnterpriseTooHealthy:
-							ConsolePlus.WriteLineWithColor(ConsoleColor.Blue,
 							message = "federation ships will get priority.");
 							break;
 

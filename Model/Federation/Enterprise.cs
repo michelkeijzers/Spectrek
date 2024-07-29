@@ -8,6 +8,8 @@ namespace AsciiGames
 		{
 			Sensors = new Sensors();
 			Weapons = new Weapons();
+			Weapons.Photons.NrOfPhotons = 20;
+
 			Propulsions = new Propulsions();
 			XPosition = 0;
 			YPosition = 0;
@@ -70,7 +72,7 @@ namespace AsciiGames
 		{
 			get
 			{
-				return ((DamagePercentage <= 10.0) && (Energy >= 10000)); // TODO: photons > 10, see page 60
+				return ((DamagePercentage <= 10.0) && (Energy >= 10000) && (Weapons.Photons.NrOfPhotons >= 10)); 
 			}
 		}
 	}

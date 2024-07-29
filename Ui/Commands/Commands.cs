@@ -12,6 +12,7 @@ namespace AsciiGames
 				new CommandLongDistanceSensor(),
 				new CommandImpulseDrive(),
 				new CommandHyperDrive(),
+				new CommandPhoton(),
 				new CommandDock(),
 
 				new CommandQuitGame()

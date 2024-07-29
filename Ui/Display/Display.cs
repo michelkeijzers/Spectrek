@@ -21,6 +21,25 @@ namespace AsciiGames
 			SpecTrek specTrek = SpecTrek.Instance;
 			Enterprise enterprise = specTrek.Federation.Enterprise;
 
+			/* Test colors */
+			/*
+			ConsolePlus.WriteWithColor(ConsoleColor.Yellow, "Yellow ");
+			ConsolePlus.WriteWithColor(ConsoleColor.DarkRed, "Dark Red ");
+			ConsolePlus.WriteWithColor(ConsoleColor.Red, "Red ");
+			ConsolePlus.WriteWithColor(ConsoleColor.DarkBlue, "Dark Blue ");
+			ConsolePlus.WriteWithColor(ConsoleColor.Blue, "Blue ");
+			ConsolePlus.WriteWithColor(ConsoleColor.DarkGreen, "Dark Green ");
+			ConsolePlus.WriteWithColor(ConsoleColor.Green, "Green ");
+			ConsolePlus.WriteWithColor(ConsoleColor.DarkCyan, "DarkCyan ");
+			ConsolePlus.WriteWithColor(ConsoleColor.Cyan, "Cyan ");
+			ConsolePlus.WriteWithColor(ConsoleColor.DarkMagenta, "Dark Magenta ");
+			ConsolePlus.WriteWithColor(ConsoleColor.Magenta, "Magenta ");
+			ConsolePlus.WriteWithColor(ConsoleColor.DarkGray, "Dark Gray ");
+			ConsolePlus.WriteWithColor(ConsoleColor.Gray, "Gray ");
+			ConsolePlus.WriteWithColor(ConsoleColor.White, "White ");
+			Console.WriteLine("");
+			*/
+
 			Console.Write("Star Date: ");
 			if (SpecTrek.Instance.StarDate.Year >= 2404)
 			{
@@ -46,6 +65,12 @@ namespace AsciiGames
 			Console.Write(", Damage: " + enterprise.DamagePercentage.ToString("N1", englishCulture) + "%");
 			Console.WriteLine(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
 			 enterprise.YPosition.ToString("N2", englishCulture) + ")");
+
+			Console.Write($"           | Photons: ");
+			int nrOfPhotons = enterprise.Weapons.Photons.NrOfPhotons;
+			ConsoleColor color = nrOfPhotons < 4 ? (nrOfPhotons == 0 ? ConsoleColor.Red : ConsoleColor.Yellow) : ConsoleColor.Green;
+			ConsolePlus.WriteWithColor(color, $"{nrOfPhotons}");
+			Console.WriteLine("");
 
 			Sector? sector = enterprise.Sector;
 			if (sector != null)
@@ -111,9 +136,18 @@ namespace AsciiGames
 					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "E");
 					nrOfCharactersPrinted++;
 				}
-				if (specTrek.Federation.BaseShips.HasIntactBaseShipInSector(sector))
+
+				BaseShip? baseShip = sector.GetBaseShip();
+				if (baseShip != null)
 				{
-					ConsolePlus.WriteWithColor(System.ConsoleColor.White, "B");
+					if (baseShip.Status == Ship.EStatus.Active)
+					{
+						ConsolePlus.WriteWithColor(System.ConsoleColor.White, "B");
+					}
+					else
+					{
+						ConsolePlus.WriteWithColor(System.ConsoleColor.DarkGray, "B");
+					}
 					nrOfCharactersPrinted++;
 				}
 				if (specTrek.KlingonShips.HasSectorShip(sector))

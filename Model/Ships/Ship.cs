@@ -17,9 +17,9 @@
 
 		public double DamagePercentage { get; set; } = 0.0;
 
-		public EStatus Status { get; private set; }
+		public EStatus Status { get; set; }
 
-		public bool IsDestroyed { get { return Status == EStatus.Active; } }
+		public bool IsDestroyed { get { return Status != EStatus.Active; } }
 
 	}
 }

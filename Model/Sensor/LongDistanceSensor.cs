@@ -4,7 +4,7 @@
 	{
 		public static void GetScanResult(Quadrant quadrant, out bool baseShipInQuadrant, out int nrOfKlingonsInQuadrant)
 		{
-			baseShipInQuadrant = quadrant.HasBaseShip();
+			baseShipInQuadrant = (quadrant.GetBaseShip() != null);
 			nrOfKlingonsInQuadrant = quadrant.CountKlingons();
 		}
 	}

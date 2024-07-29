@@ -17,5 +17,16 @@ namespace AsciiGames
 		{
 			get { return Quadrant.Vertical * Quadrant.VERTICAL_SECTORS + Vertical; }
 		}
+
+
+		public BaseShip? GetBaseShip()
+		{
+			return SpecTrek.Instance.Federation.BaseShips.BaseShips.FirstOrDefault(ship => ship.Sector! == this);
+		}
+
+		public KlingonShip? GetKlingonShip()
+		{
+			return SpecTrek.Instance.KlingonShips.Ships.FirstOrDefault(ship => ship.Sector! == this);
+		}
 	}
 }
