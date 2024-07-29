@@ -30,7 +30,7 @@
 							break;
 
 						case BaseShipInSector.EEvent.EnterpriseTooHealthy:
-							message = "federation ships will get priority.");
+							message = "federation ships will get priority.";
 							break;
 
 						default:

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.Globalization;
 using System.Linq;
 using System.Text;
@@ -39,6 +40,7 @@ namespace AsciiGames
 			ConsolePlus.WriteWithColor(ConsoleColor.White, "White ");
 			Console.WriteLine("");
 			*/
+			ConsoleColor color;
 
 			Console.Write("Star Date: ");
 			if (SpecTrek.Instance.StarDate.Year >= 2404)
@@ -66,9 +68,18 @@ namespace AsciiGames
 			Console.WriteLine(", Position: (" + enterprise.XPosition.ToString("N2", englishCulture) + ", " +
 			 enterprise.YPosition.ToString("N2", englishCulture) + ")");
 
-			Console.Write($"           | Photons: ");
+			Console.Write($"           | Shields: ");
+			if (enterprise.Shields.Enabled)
+			{
+				ConsolePlus.WriteWithColor(ConsoleColor.Green, "Enabled");
+			}
+			else
+			{
+				Console.Write("Disabled");
+			}
+			Console.Write(", Photons: ");
 			int nrOfPhotons = enterprise.Weapons.Photons.NrOfPhotons;
-			ConsoleColor color = nrOfPhotons < 4 ? (nrOfPhotons == 0 ? ConsoleColor.Red : ConsoleColor.Yellow) : ConsoleColor.Green;
+			color = nrOfPhotons < 4 ? (nrOfPhotons == 0 ? ConsoleColor.Red : ConsoleColor.Yellow) : ConsoleColor.Green;
 			ConsolePlus.WriteWithColor(color, $"{nrOfPhotons}");
 			Console.WriteLine("");
 

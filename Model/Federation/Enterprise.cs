@@ -10,6 +10,9 @@ namespace AsciiGames
 			Weapons = new Weapons();
 			Weapons.Photons.NrOfPhotons = 20;
 
+			Shields = new Shields();
+
+
 			Propulsions = new Propulsions();
 			XPosition = 0;
 			YPosition = 0;
@@ -63,6 +66,8 @@ namespace AsciiGames
 		public Sensors Sensors { get; private set; }
 
 		public Weapons Weapons { get; private set; }	
+
+		public Shields Shields { get; private set; }
 
 		public Propulsions? Propulsions { get; private set; }
 

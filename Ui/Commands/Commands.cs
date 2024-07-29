@@ -13,6 +13,7 @@ namespace AsciiGames
 				new CommandImpulseDrive(),
 				new CommandHyperDrive(),
 				new CommandPhoton(),
+				new CommandShields(),
 				new CommandDock(),
 
 				new CommandQuitGame()
